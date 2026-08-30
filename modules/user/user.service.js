@@ -12,6 +12,7 @@ const getAllUserSercice = async (req, res) => {
       users.length === 0
         ? 'Aucun utilisateur pour le moment'
         : 'Liste des utilisateur',
+    data: users,
   };
 
   return res.status(responses.OK).json(response);

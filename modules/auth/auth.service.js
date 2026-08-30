@@ -1,8 +1,8 @@
 const { User } = require('../../database/config');
 const responses = require('../../messages/responses');
 const crypto = require('crypto');
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 function generateCode() {
   return crypto.randomInt(100000, 1000000).toString();
@@ -27,5 +27,42 @@ const registerService = async (req, res) => {
   });
 };
 
+const loginService = async (req, res) => {
+  const { phone, password } = req.body;
+  const user = await User.findOne({ where: { phone } });
+  if (!user) {
+    return res.status(responses.UNAUTHORIZED).json({
+      success: false,
+      message: 'Numéro de téléphone ou mot de passe incorrect',
+    });
+  }
 
-module.exports = { registerService };
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(responses.UNAUTHORIZED).json({
+      success: false,
+      message: 'Numéro de téléphone ou mot de passe incorrect',
+    });
+  }
+
+  const accessToken = jwt.sign(
+    { id: user.id, role: user.status },
+    process.env.SECRET_ACCESS_TOKEN,
+    { expiresIn: process.env.EXPIRE_IN_ACCESS_TOKEN }
+  );
+  const refreshToken = jwt.sign(
+    { id: user.id, role: user.status },
+    process.env.SECRET_REFRESH_TOKEN,
+    { expiresIn: process.env.EXPIRE_IN_REFRESH_TOKEN }
+  );
+
+  return res.status(responses.ACCEPTED).json({
+    success: true,
+    message: 'Bienvenu sur votre compte',
+    data: user,
+    accessToken,
+    refreshToken,
+  });
+};
+
+module.exports = { registerService, loginService };
