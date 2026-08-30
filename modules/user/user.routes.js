@@ -8,13 +8,13 @@ const {
   resetUserPasswordController,
   unActiveUserController,
   activeUserController,
-} = require('./user/user.controller');
-const validate = require('../middleware/validator/validate');
+} = require('./user.controller');
+const validate = require('../../middleware/validator/validate');
 const {
   addUserSchema,
   updateUserSchema,
   resetUserPasswordSchema,
-} = require('./user/user.schema');
+} = require('./user.schema');
 
 const userRoute = express.Router();
 

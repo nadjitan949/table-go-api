@@ -42,11 +42,13 @@ const updateUserSchema = z.object({
     .regex(/^[0-9+\s]+$/, 'Le numéro de téléphone est invalide')
     .optional(),
 
-  status: z.enum(['server', 'cook', 'admin'], {
-    errorMap: () => ({
-      message: 'Le statut doit être server, cook ou admin',
-    }),
-  }).optional(),
+  status: z
+    .enum(['server', 'cook', 'admin'], {
+      errorMap: () => ({
+        message: 'Le statut doit être server, cook ou admin',
+      }),
+    })
+    .optional(),
 });
 
 const resetUserPasswordSchema = z.object({
