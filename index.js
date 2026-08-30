@@ -2,10 +2,14 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const { sequelize } = require('./database/config/index');
+const appRoute = require('./app.routes');
+const errorHandler = require('./middleware/errors/errorHandler');
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(appRoute);
+app.use(errorHandler);
 
 async function connection() {
   try {
