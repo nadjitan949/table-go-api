@@ -46,7 +46,7 @@ const updateUserSchema = z.object({
     errorMap: () => ({
       message: 'Le statut doit être server, cook ou admin',
     }),
-  }).optional,
+  }).optional(),
 });
 
 const resetUserPasswordSchema = z.object({
