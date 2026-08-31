@@ -85,12 +85,12 @@ const forgotPasswordService = async (req, res) => {
   }
 
   const code = generateCode();
-  await Otp.destroy({ where: { user: phone } });
+  await Otp.destroy({ where: { user: user.phone } });
   const hashedCode = await bcrypt.hash(code.toString(), 10);
 
   await Otp.create({
     source: 'forgot_password',
-    user: phone,
+    user: user.phone,
     code: hashedCode,
     expiresAt: new Date(Date.now() + 5 * 60 * 1000),
   });
@@ -121,6 +121,15 @@ const resetPasswordService = async (req, res) => {
   }
 
   const code = generateCode();
+  await Otp.destroy({ where: { user: user.phone } });
+  const hashedCode = await bcrypt.hash(code.toString(), 10);
+
+  await Otp.create({
+    source: 'reset_password',
+    user: user.phone,
+    code: hashedCode,
+    expiresAt: new Date(Date.now() + 5 * 60 * 1000),
+  });
 
   return res.status(responses.OK).json({
     success: true,
