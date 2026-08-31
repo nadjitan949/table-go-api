@@ -65,4 +65,23 @@ const loginService = async (req, res) => {
   });
 };
 
-module.exports = { registerService, loginService };
+const forgotPasswordService = async (req, res) => {
+  const { phone } = req.body;
+  const user = await User.findOne({ where: { phone } });
+  if (!user) {
+    return res.status(responses.NOT_FOUND).json({
+      success: false,
+      message: "Cet numéro de téléphone n'est associé à aucun utilisateur",
+    });
+  }
+
+  const code = generateCode();
+
+  return res.status(responses.OK).json({
+    success: true,
+    message: `Confirmer avec le code envoyé au ${phone}`,
+    data: code,
+  });
+};
+
+module.exports = { registerService, loginService, forgotPasswordService };

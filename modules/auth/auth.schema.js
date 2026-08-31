@@ -16,4 +16,10 @@ const loginSchema = z
   })
   .strict();
 
-module.exports = { registerSchema, loginSchema };
+const forgotPasswordSchema = z
+  .object({
+    phone: z.string().min(1, 'Veuillez indiquer votre numéro de téléphone'),
+  })
+  .strict();
+
+module.exports = { registerSchema, loginSchema, forgotPasswordSchema };
