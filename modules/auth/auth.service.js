@@ -1,4 +1,4 @@
-const { User } = require('../../database/config');
+const { User, Otp } = require('../../database/config');
 const responses = require('../../messages/responses');
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
@@ -10,8 +10,8 @@ function generateCode() {
 
 const registerService = async (req, res) => {
   const { phone } = req.body;
-  const user = await User.findOne({ where: { phone } });
-  if (user) {
+  const existingUser = await User.findOne({ where: { phone } });
+  if (existingUser) {
     return res.status(responses.CONFLICT).json({
       success: false,
       message: 'Ce numéro de téléphone est déjà associé à un autre compte',
@@ -19,6 +19,15 @@ const registerService = async (req, res) => {
   }
 
   const code = generateCode();
+  await Otp.destroy({ where: { user: phone } });
+  const hashedCode = await bcrypt.hash(code.toString(), 10);
+
+  await Otp.create({
+    source: 'register',
+    user: phone,
+    code: hashedCode,
+    expiresAt: new Date(Date.now() + 5 * 60 * 1000),
+  });
 
   return res.status(responses.ACCEPTED).json({
     success: true,
