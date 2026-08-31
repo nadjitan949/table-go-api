@@ -5,7 +5,7 @@ const verifyOtpController = asyncHandler(async (req, res) => {
   await verifyOtpService(req, res);
 });
 const resendOtpController = asyncHandler(async (req, res) => {
-    await resendOtpService(req, res)
-})
+  await resendOtpService(req, res);
+});
 
 module.exports = { verifyOtpController, resendOtpController };

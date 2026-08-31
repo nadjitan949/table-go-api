@@ -9,6 +9,6 @@ const appRoute = express.Router();
 appRoute.use('/users', userRoute);
 appRoute.use('/auth', authRoute);
 appRoute.use('/otp', otpRoute);
-appRoute.use('/menu', menuRoute)
+appRoute.use('/menu', menuRoute);
 
 module.exports = appRoute;

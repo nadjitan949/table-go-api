@@ -1,6 +1,6 @@
 const responses = require('../../messages/responses');
 const bcrypt = require('bcrypt');
-const crypto = require("crypto");
+const crypto = require('crypto');
 const Otp = require('../../database/model/tables/otp.model');
 const User = require('../../database/model/tables/user.model');
 
@@ -112,7 +112,7 @@ const resendOtpService = async (req, res) => {
       message: 'Aucune demande en attente pour ce profil',
     });
   }
-  const rawCode = generateCode()
+  const rawCode = generateCode();
   const hashedCode = await bcrypt.hash(rawCode.toString(), 10);
   const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
@@ -124,7 +124,7 @@ const resendOtpService = async (req, res) => {
   return res.status(responses.OK).json({
     success: true,
     message: 'Un nouveau code de vérification a été envoyé avec succès',
-    data: rawCode, 
+    data: rawCode,
   });
 };
 
