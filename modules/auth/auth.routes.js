@@ -3,12 +3,14 @@ const {
   registerController,
   loginController,
   forgotPasswordController,
+  resetPasswordController,
 } = require('./auth.controller');
 const validate = require('../../middleware/validator/validate');
 const {
   registerSchema,
   loginSchema,
   forgotPasswordSchema,
+  resetPasswordSchema,
 } = require('./auth.schema');
 
 const authRoute = express.Router();
@@ -20,5 +22,6 @@ authRoute.post(
   validate(forgotPasswordSchema),
   forgotPasswordController
 );
+authRoute.post("/reset-password", validate(resetPasswordSchema), resetPasswordController)
 
 module.exports = authRoute;

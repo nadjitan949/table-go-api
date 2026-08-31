@@ -22,4 +22,9 @@ const forgotPasswordSchema = z
   })
   .strict();
 
-module.exports = { registerSchema, loginSchema, forgotPasswordSchema };
+const resetPasswordSchema = z.object({
+    userId: z.number({invalid_type_error: "L'identifiant de l'utilisateur doit être un nombre",}).min(1, "Veuillez renseigner l'identifiant de l'utilisateur"),
+    oldPassword: z.string().min(1, 'Veuillez renseigner votre ancien mot de passe'),
+}).strict()
+
+module.exports = { registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema };
