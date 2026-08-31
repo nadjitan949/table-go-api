@@ -10,7 +10,7 @@ const MenuItem = sequelize.define("MenuItem",
         category: { type: DataTypes.ENUM("starter", "main", "dessert", "drink"), allowNull: false },
         estimatedPrepTime: { type: DataTypes.INTEGER, allowNull: false },
         isAvailable: { type: DataTypes.BOOLEAN, defaultValue: true },
-        imageUrl: { type: DataTypes.STRING, allowNull: false }
+        imageUrl: { type: DataTypes.STRING, allowNull: true }
     },
     {
         tableName: "menu_items",

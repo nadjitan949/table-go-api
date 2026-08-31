@@ -1,8 +1,9 @@
-const { User, Otp } = require('../../database/config');
 const responses = require('../../messages/responses');
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require('../../database/model/tables/user.model');
+const Otp = require('../../database/model/tables/otp.model');
 
 function generateCode() {
   return crypto.randomInt(100000, 1000000).toString();

@@ -1,8 +1,7 @@
 const { Op } = require('sequelize');
-const { User } = require('../../database/config');
 const responses = require('../../messages/responses');
 const bcrypt = require('bcrypt');
-const asyncHandler = require('../../utils/asyncHandler');
+const User = require('../../database/model/tables/user.model');
 
 const getAllUserSercice = async (req, res) => {
   const users = await User.findAll();

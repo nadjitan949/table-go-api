@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-const { sequelize } = require('./database/config/index');
 const appRoute = require('./app.routes');
 const errorHandler = require('./middleware/errors/errorHandler');
+const sequelize = require('./database/config/connect');
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
