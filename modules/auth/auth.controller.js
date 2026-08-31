@@ -16,12 +16,12 @@ const forgotPasswordController = asyncHandler(async (req, res) => {
   await forgotPasswordService(req, res);
 });
 const resetPasswordController = asyncHandler(async (req, res) => {
-    await resetPasswordService(req, res)
-})
+  await resetPasswordService(req, res);
+});
 
 module.exports = {
   registerController,
   loginController,
   forgotPasswordController,
-  resetPasswordController
+  resetPasswordController,
 };

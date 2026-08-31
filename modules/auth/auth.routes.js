@@ -22,6 +22,10 @@ authRoute.post(
   validate(forgotPasswordSchema),
   forgotPasswordController
 );
-authRoute.post("/reset-password", validate(resetPasswordSchema), resetPasswordController)
+authRoute.post(
+  '/reset-password',
+  validate(resetPasswordSchema),
+  resetPasswordController
+);
 
 module.exports = authRoute;

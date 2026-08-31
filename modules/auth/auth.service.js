@@ -85,30 +85,36 @@ const forgotPasswordService = async (req, res) => {
 };
 
 const resetPasswordService = async (req, res) => {
-    const { userId, oldPassword } = req.body
-    const user = await User.findByPk(userId)
-    if(!user) {
-        return res.status(responses.NOT_FOUND).json({
-            success: false,
-            message: "Utilisateur introuvable"
-        })
-    }
+  const { userId, oldPassword } = req.body;
+  const user = await User.findByPk(userId);
+  if (!user) {
+    return res.status(responses.NOT_FOUND).json({
+      success: false,
+      message: 'Utilisateur introuvable',
+    });
+  }
 
-    const isMatch = await bcrypt.compare(oldPassword, user.password)
-    if(!isMatch) {
-        return res.status(responses.UNAUTHORIZED).json({
-            success: false,
-            message: "Ancien mot de passe incorrect"
-        })
-    }
+  const isMatch = await bcrypt.compare(oldPassword, user.password);
+  if (!isMatch) {
+    return res.status(responses.UNAUTHORIZED).json({
+      success: false,
+      message: 'Ancien mot de passe incorrect',
+    });
+  }
 
-    const code = generateCode()
+  const code = generateCode();
 
-    return res.status(responses.OK).json({
-        success: true,
-        message: "Entrer le code de vérification a été envoyé à votre noméro de téléphone",
-        data: code
-    })
-}
+  return res.status(responses.OK).json({
+    success: true,
+    message:
+      'Entrer le code de vérification a été envoyé à votre noméro de téléphone',
+    data: code,
+  });
+};
 
-module.exports = { registerService, loginService, forgotPasswordService, resetPasswordService };
+module.exports = {
+  registerService,
+  loginService,
+  forgotPasswordService,
+  resetPasswordService,
+};
