@@ -85,6 +85,15 @@ const forgotPasswordService = async (req, res) => {
   }
 
   const code = generateCode();
+  await Otp.destroy({ where: { user: phone } });
+  const hashedCode = await bcrypt.hash(code.toString(), 10);
+
+  await Otp.create({
+    source: 'forgot_password',
+    user: phone,
+    code: hashedCode,
+    expiresAt: new Date(Date.now() + 5 * 60 * 1000),
+  });
 
   return res.status(responses.OK).json({
     success: true,
