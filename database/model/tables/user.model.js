@@ -11,7 +11,7 @@ const User = sequelize.define(
       autoIncrement: true,
     },
     fullname: { type: DataTypes.STRING, allowNull: false },
-    phone: { type: DataTypes.STRING, allowNull: false, unique: true },
+    phone: { type: DataTypes.STRING, allowNull: false },
     status: { type: DataTypes.ENUM('server', 'cook', 'admin') },
     password: { type: DataTypes.STRING, allowNull: false },
     isActive: { type: DataTypes.BOOLEAN, defaultValue: true },
@@ -21,6 +21,11 @@ const User = sequelize.define(
     timestamps: true,
     paranoid: true,
     indexes: [
+      {
+        unique: true,
+        name: 'user_phone_idx',
+        fields: ['phone'],
+      },
       {
         name: 'user_status_idx',
         fields: ['status'],

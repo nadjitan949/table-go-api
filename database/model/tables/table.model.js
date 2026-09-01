@@ -10,8 +10,8 @@ const Table = sequelize.define(
       autoIncrement: true,
       unique: true,
     },
-    number: { type: DataTypes.STRING, allowNull: false, unique: true },
-    qrCodeToken: { type: DataTypes.STRING, allowNull: false, unique: true },
+    number: { type: DataTypes.STRING, allowNull: false },
+    qrCodeToken: { type: DataTypes.STRING, allowNull: false },
     qrCodeImageUrl: { type: DataTypes.STRING, allowNull: true },
     status: {
       type: DataTypes.ENUM('free', 'occupied', 'out_of_service'),
@@ -26,6 +26,16 @@ const Table = sequelize.define(
       {
         name: 'table_status_idx',
         fields: ['status'],
+      },
+      {
+        unique: true,
+        name: 'table_number_idx',
+        fields: ['number'],
+      },
+      {
+        unique: true,
+        name: 'tables_qr_code_qrCodeToken_idx',
+        fields: ['qrCodeToken'],
       },
     ],
   }
