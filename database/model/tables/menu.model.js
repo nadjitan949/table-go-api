@@ -25,6 +25,12 @@ const MenuItem = sequelize.define(
     tableName: 'menu_items',
     timestamps: true,
     paranoid: true,
+    indexes: [
+      {
+        name: 'items_category_idx',
+        fields: ['category'],
+      },
+    ],
   }
 );
 

@@ -22,6 +22,12 @@ const Table = sequelize.define(
   {
     tableName: 'tables',
     timestamps: true,
+    indexes: [
+      {
+        name: 'table_status_idx',
+        fields: ['status'],
+      },
+    ],
   }
 );
 

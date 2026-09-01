@@ -20,6 +20,12 @@ const User = sequelize.define(
     tableName: 'users',
     timestamps: true,
     paranoid: true,
+    indexes: [
+      {
+        name: 'user_status_idx',
+        fields: ['status'],
+      },
+    ],
   }
 );
 

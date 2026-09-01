@@ -21,6 +21,16 @@ const Otp = sequelize.define(
   {
     tableName: 'otps',
     timestamps: true,
+    indexes: [
+      {
+        name: 'otp_source_idx',
+        fields: ['source'],
+      },
+      {
+        name: 'otp_user_idx',
+        fields: ['user'],
+      },
+    ],
   }
 );
 
