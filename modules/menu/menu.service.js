@@ -79,7 +79,7 @@ const deleteMenuService = async (req, res) => {
       message: 'Menu introuvable',
     });
   }
-  
+
   if (menu.imageUrl) {
     try {
       await deleteImageFromCloudinary(menu.imageUrl);
