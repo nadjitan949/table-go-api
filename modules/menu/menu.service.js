@@ -79,8 +79,7 @@ const deleteMenuService = async (req, res) => {
       message: 'Menu introuvable',
     });
   }
-
-  // Suppression de l'image sur Cloudinary (si elle existe)
+  
   if (menu.imageUrl) {
     try {
       await deleteImageFromCloudinary(menu.imageUrl);
