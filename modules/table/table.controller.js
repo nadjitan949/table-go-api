@@ -7,6 +7,7 @@ const {
   changeTableStatusService,
   getOnTableService,
   deleteTableService,
+  getTableByTokenService,
 } = require('./table.service');
 
 const getAllTablesController = asyncHandler(async (req, res) => {
@@ -30,6 +31,9 @@ const changeTableStatusController = asyncHandler(async (req, res) => {
 const deleteTableController = asyncHandler(async (req, res) => {
   await deleteTableService(req, res);
 });
+const getTableByTokenController = asyncHandler(async (req, res) => {
+  await getTableByTokenService(req, res);
+});
 
 module.exports = {
   getAllTablesController,
@@ -39,4 +43,5 @@ module.exports = {
   regenerateQrTokenController,
   changeTableStatusController,
   deleteTableController,
+  getTableByTokenController,
 };

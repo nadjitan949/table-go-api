@@ -6,6 +6,7 @@ const {
   renameTableController,
   regenerateQrTokenController,
   deleteTableController,
+  getTableByTokenController,
 } = require('./table.controller');
 const validate = require('../../middleware/validator/validate');
 const { createTableSchema, renameTableSchema } = require('./table.schema');
@@ -14,6 +15,7 @@ const tableRoute = express.Router();
 
 tableRoute.get('/all', getAllTablesController);
 tableRoute.get('/details/:id', getOnTableController);
+tableRoute.get('/get-table/:token', getTableByTokenController);
 tableRoute.post('/create', validate(createTableSchema), createTableController);
 tableRoute.patch(
   '/rename/:id',

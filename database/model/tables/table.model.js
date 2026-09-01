@@ -12,6 +12,7 @@ const Table = sequelize.define(
     },
     number: { type: DataTypes.STRING, allowNull: false, unique: true },
     qrCodeToken: { type: DataTypes.STRING, allowNull: false, unique: true },
+    qrCodeImageUrl: { type: DataTypes.STRING, allowNull: true },
     status: {
       type: DataTypes.ENUM('free', 'occupied', 'out_of_service'),
       allowNull: false,
