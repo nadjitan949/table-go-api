@@ -10,7 +10,7 @@ function generateQrToken() {
 }
 
 async function generateAndUploadQrImage(token, tableId) {
-  const url = `${process.env.CLIENT_URL}/menu/${token}`;
+  const url = `${process.env.CLIENT_URL}/${token}`;
   const qrBuffer = await QRCode.toBuffer(url, { width: 1000, margin: 2 });
 
   const result = await uploadToCloudinary(
