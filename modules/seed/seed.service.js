@@ -26,6 +26,7 @@ const seedMenus = [
     price: 2500,
     category: 'starter',
     estimatedPrepTime: 15,
+    imageUrl: 'https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Samoussas au poulet',
@@ -33,6 +34,7 @@ const seedMenus = [
     price: 2000,
     category: 'starter',
     estimatedPrepTime: 10,
+    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Salade de saison',
@@ -40,6 +42,7 @@ const seedMenus = [
     price: 3000,
     category: 'starter',
     estimatedPrepTime: 10,
+    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Soupe de poisson',
@@ -47,6 +50,7 @@ const seedMenus = [
     price: 2000,
     category: 'starter',
     estimatedPrepTime: 20,
+    imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Beignets de légumes',
@@ -54,6 +58,7 @@ const seedMenus = [
     price: 1500,
     category: 'starter',
     estimatedPrepTime: 10,
+    imageUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80'
   },
   // Plats principaux (5)
   {
@@ -62,6 +67,7 @@ const seedMenus = [
     price: 5000,
     category: 'main',
     estimatedPrepTime: 40,
+    imageUrl: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Yassa au poulet',
@@ -69,6 +75,7 @@ const seedMenus = [
     price: 4500,
     category: 'main',
     estimatedPrepTime: 35,
+    imageUrl: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Mafé',
@@ -76,6 +83,7 @@ const seedMenus = [
     price: 4500,
     category: 'main',
     estimatedPrepTime: 35,
+    imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Dibi',
@@ -83,6 +91,7 @@ const seedMenus = [
     price: 4000,
     category: 'main',
     estimatedPrepTime: 30,
+    imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Domoda',
@@ -90,6 +99,7 @@ const seedMenus = [
     price: 4500,
     category: 'main',
     estimatedPrepTime: 35,
+    imageUrl: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80'
   },
   // Desserts (5)
   {
@@ -98,6 +108,7 @@ const seedMenus = [
     price: 1500,
     category: 'dessert',
     estimatedPrepTime: 10,
+    imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Fondant au chocolat',
@@ -105,6 +116,7 @@ const seedMenus = [
     price: 2500,
     category: 'dessert',
     estimatedPrepTime: 20,
+    imageUrl: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Tiramisu',
@@ -112,6 +124,7 @@ const seedMenus = [
     price: 2500,
     category: 'dessert',
     estimatedPrepTime: 20,
+    imageUrl: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Crème brûlée',
@@ -119,6 +132,7 @@ const seedMenus = [
     price: 2000,
     category: 'dessert',
     estimatedPrepTime: 20,
+    imageUrl: 'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Salade de fruits frais',
@@ -126,6 +140,7 @@ const seedMenus = [
     price: 1500,
     category: 'dessert',
     estimatedPrepTime: 10,
+    imageUrl: 'https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=800&q=80'
   },
   // Boissons (5)
   {
@@ -134,6 +149,7 @@ const seedMenus = [
     price: 1000,
     category: 'drink',
     estimatedPrepTime: 5,
+    imageUrl: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Jus de gingembre',
@@ -141,6 +157,7 @@ const seedMenus = [
     price: 1000,
     category: 'drink',
     estimatedPrepTime: 5,
+    imageUrl: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Bouye',
@@ -148,6 +165,7 @@ const seedMenus = [
     price: 1500,
     category: 'drink',
     estimatedPrepTime: 5,
+    imageUrl: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Jus d’ananas',
@@ -155,6 +173,7 @@ const seedMenus = [
     price: 1000,
     category: 'drink',
     estimatedPrepTime: 5,
+    imageUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Eau minérale',
@@ -162,6 +181,7 @@ const seedMenus = [
     price: 500,
     category: 'drink',
     estimatedPrepTime: 1,
+    imageUrl: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=800&q=80'
   },
 ];
 const generateAndUploadQrImage = async (token, tableId) => {
