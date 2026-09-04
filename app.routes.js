@@ -5,6 +5,7 @@ const otpRoute = require('./modules/otp/otp.routes');
 const menuRoute = require('./modules/menu/menu.routes');
 const tableRoute = require('./modules/table/table.routes');
 const seedRoute = require('./modules/seed/seed.routes');
+const addOnRoute = require('./modules/add_on/addOn.routes');
 
 const appRoute = express.Router();
 
@@ -14,5 +15,6 @@ appRoute.use('/otp', otpRoute);
 appRoute.use('/menu', menuRoute);
 appRoute.use('/table', tableRoute);
 appRoute.use('/seed', seedRoute);
+appRoute.use("/add-on", addOnRoute)
 
 module.exports = appRoute;

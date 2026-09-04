@@ -4,11 +4,8 @@ const responses = require('../../messages/responses');
 async function uploadMenuPhoto(req, res, next) {
   try {
     if (!req.file) {
-      return next(); // pas de photo envoyée, on continue sans (imageUrl restera null/inchangé)
+      return next();
     }
-
-    // Public_id unique par upload (jamais le même) : permet de supprimer
-    // proprement l'ancienne image depuis le service sans l'écraser
     const publicId = `menu-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
     const result = await uploadToCloudinary(

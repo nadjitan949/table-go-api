@@ -1,9 +1,14 @@
+const { AddOn } = require('../../database/model/relations/relations');
 const MenuItem = require('../../database/model/tables/menu.model');
 const responses = require('../../messages/responses');
 const { deleteImageFromCloudinary } = require('../../utils/uploadToCloudinary');
 
 const getAllMenusServices = async (req, res) => {
-  const menus = await MenuItem.findAll();
+  const menus = await MenuItem.findAll({
+    include: {
+      model: AddOn
+    }
+  });
 
   return res.status(responses.OK).json({
     success: true,
@@ -17,7 +22,11 @@ const getAllMenusServices = async (req, res) => {
 
 const getOneMenuService = async (req, res) => {
   const id = req.params.id;
-  const menu = await MenuItem.findByPk(id);
+  const menu = await MenuItem.findByPk(id, {
+    include: {
+      model: AddOn
+    }
+  });
 
   return res.status(!menu ? responses.NOT_FOUND : responses.OK).json({
     success: Boolean(menu),
