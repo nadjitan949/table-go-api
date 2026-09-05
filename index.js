@@ -28,7 +28,7 @@ async function connection() {
     await sequelize.authenticate();
     console.log('Connexion réussie');
 
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ alter: true });
     console.log('Base de donnée synchronisé');
   } catch (error) {
     console.log(`Une erreur s'est produite: ${error}`);

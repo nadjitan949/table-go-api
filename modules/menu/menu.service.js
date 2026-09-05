@@ -6,8 +6,8 @@ const { deleteImageFromCloudinary } = require('../../utils/uploadToCloudinary');
 const getAllMenusServices = async (req, res) => {
   const menus = await MenuItem.findAll({
     include: {
-      model: AddOn
-    }
+      model: AddOn,
+    },
   });
 
   return res.status(responses.OK).json({
@@ -24,8 +24,8 @@ const getOneMenuService = async (req, res) => {
   const id = req.params.id;
   const menu = await MenuItem.findByPk(id, {
     include: {
-      model: AddOn
-    }
+      model: AddOn,
+    },
   });
 
   return res.status(!menu ? responses.NOT_FOUND : responses.OK).json({

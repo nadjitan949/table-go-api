@@ -15,6 +15,6 @@ appRoute.use('/otp', otpRoute);
 appRoute.use('/menu', menuRoute);
 appRoute.use('/table', tableRoute);
 appRoute.use('/seed', seedRoute);
-appRoute.use("/add-on", addOnRoute)
+appRoute.use('/add-on', addOnRoute);
 
 module.exports = appRoute;

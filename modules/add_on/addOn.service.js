@@ -1,53 +1,74 @@
-const { AddOn } = require("../../database/model/relations/relations")
-const MenuItem = require("../../database/model/tables/menu.model")
-const responses = require("../../messages/responses")
-const { deleteImageFromCloudinary } = require("../../utils/uploadToCloudinary")
+const { AddOn } = require('../../database/model/relations/relations');
+const MenuItem = require('../../database/model/tables/menu.model');
+const responses = require('../../messages/responses');
+const { deleteImageFromCloudinary } = require('../../utils/uploadToCloudinary');
 
 const getAllAddOnService = async (req, res) => {
-    const addOns = await AddOn.findAll({
-        include: { model: MenuItem }
-    });
+  const addOns = await AddOn.findAll({
+    include: { model: MenuItem },
+  });
 
-    return res.status(responses.OK).json({
-        success: true,
-        message: addOns.length === 0 ? "Aucun supplément menu ajouté pour le moment" : "Liste des suppléments avec les menus",
-        data: addOns
-    });
+  return res.status(responses.OK).json({
+    success: true,
+    message:
+      addOns.length === 0
+        ? 'Aucun supplément menu ajouté pour le moment'
+        : 'Liste des suppléments avec les menus',
+    data: addOns,
+  });
 };
 
 const getOneAddOnService = async (req, res) => {
-    const id = req.params.id;
-    const addOn = await AddOn.findByPk(id, {
-        include: { model: MenuItem }
-    });
+  const id = req.params.id;
+  const addOn = await AddOn.findByPk(id, {
+    include: { model: MenuItem },
+  });
 
-    return res.status(!addOn ? responses.NOT_FOUND : responses.OK).json({
-        success: Boolean(addOn),
-        message: !addOn ? "Supplément introuvable" : "Détails du supplément avec le menu associé",
-        data: addOn
-    });
+  return res.status(!addOn ? responses.NOT_FOUND : responses.OK).json({
+    success: Boolean(addOn),
+    message: !addOn
+      ? 'Supplément introuvable'
+      : 'Détails du supplément avec le menu associé',
+    data: addOn,
+  });
 };
 
 const addAddOnService = async (req, res) => {
-    const newAddOn = await AddOn.create(req.body, {
-        include: { model: MenuItem }
+  const { menuId } = req.body;
+  const menu = await MenuItem.findByPk(menuId);
+  if (!menu) {
+    return res.status(responses.NOT_FOUND).json({
+      success: false,
+      message: "Ce menu n'existe pas",
     });
+  }
+  const newAddOn = await AddOn.create(req.body, {
+    include: { model: MenuItem },
+  });
 
-    return res.status(responses.CREATED).json({
-        success: true,
-        message: "Nouveau supplément créé avec succès",
-        data: newAddOn
-    });
+  return res.status(responses.CREATED).json({
+    success: true,
+    message: 'Nouveau supplément créé avec succès',
+    data: newAddOn,
+  });
 };
 
 const updateAddOnService = async (req, res) => {
   const id = req.params.id;
+  const { menuId } = req.body;
+  const menu = await MenuItem.findByPk(menuId);
+  if (menuId && !menu) {
+    return res.status(responses.NOT_FOUND).json({
+      success: false,
+      message: "Ce menu n'existe pas",
+    });
+  }
   const addOn = await AddOn.findByPk(id);
 
   if (!addOn) {
     return res.status(responses.NOT_FOUND).json({
       success: false,
-      message: "Supplément introuvable",
+      message: 'Supplément introuvable',
     });
   }
 
@@ -65,7 +86,7 @@ const updateAddOnService = async (req, res) => {
 
   return res.status(responses.OK).json({
     success: true,
-    message: "Supplément mis à jour avec succès",
+    message: 'Supplément mis à jour avec succès',
     data: addOn,
   });
 };
@@ -77,14 +98,16 @@ const deleteAddOnService = async (req, res) => {
   if (!addOn) {
     return res.status(responses.NOT_FOUND).json({
       success: false,
-      message: "Supplément introuvable",
+      message: 'Supplément introuvable',
     });
   }
 
   if (addOn.imageUrl) {
     try {
       await deleteImageFromCloudinary(addOn.imageUrl);
-      console.log(`Image supplément supprimée de Cloudinary: ${addOn.imageUrl}`);
+      console.log(
+        `Image supplément supprimée de Cloudinary: ${addOn.imageUrl}`
+      );
     } catch (error) {
       console.log(`Erreur suppression image supplément Cloudinary: ${error}`);
     }
@@ -94,14 +117,14 @@ const deleteAddOnService = async (req, res) => {
 
   return res.status(responses.OK).json({
     success: true,
-    message: "Supplément supprimé avec succès",
+    message: 'Supplément supprimé avec succès',
   });
 };
 
 module.exports = {
-    getAllAddOnService,
-    getOneAddOnService,
-    addAddOnService,
-    updateAddOnService,
-    deleteAddOnService
-}
+  getAllAddOnService,
+  getOneAddOnService,
+  addAddOnService,
+  updateAddOnService,
+  deleteAddOnService,
+};
